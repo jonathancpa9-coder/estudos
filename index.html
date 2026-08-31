@@ -1,0 +1,91 @@
+<style>
+    h1 {
+        color: purple;
+        background-color: black;
+    }
+
+    h2 {
+        color: red;
+    }
+
+    li {
+        color: red;
+    }
+
+
+    p {
+        color: green;
+    }
+</style>
+
+<script>
+    let contador = 0;
+
+    function contar() {
+        contador = contador + 1;
+        if (contador > 3) {
+            document.getElementById('placar').style.color = 'blue';
+            document.getElementById('placar').textContent = 'chega!';
+        } else {
+            document.getElementById('placar').style.color = 'green';
+            document.getElementById('placar').textContent = contador;
+        }
+
+
+
+    }
+
+
+    function zerar() {
+        contador = 0;
+        document.getElementById('placar').textContent = '0';
+        document.getElementById('placar').style.color = 'black';
+    }
+
+    let pontos = 0;
+    function marcar() {
+        pontos = pontos + 10;
+
+    }
+
+    function verTotal() {
+        document.getElementById('total').textContent = 'você tem ' + pontos + ' pontos';
+    }
+
+    function cumprimentar() {
+        let texto = document.getElementById('nome').value;
+
+        if (texto === '') {
+            document.getElementById('saudacao').textContent = 'digite seu nome primeiro';
+        } else {
+            document.getElementById('saudacao').textContent = 'olá, ' + texto + '!';
+        }
+
+    }
+
+</script>
+
+<h1 id="titulo">meu primeiro site</h1>
+<p>estou aprendendo a programar</p>
+<h2> um teste do que acontece</h2>
+<ul>
+    <li>primeiro item</li>
+    <li>segundo item</li>
+    <li>terceiro item</li>
+</ul>
+
+<a href="https://google.com">um link</a>
+<button onclick="document.getElementById('titulo').textContent = 'mudou!'">clique em mim</button>
+
+<p id="placar">0</p>
+<button onclick="contar()">contei</button>
+
+<button onclick="zerar()">zerar</button>
+
+<p id="total">clique em ver total</p>
+<button onclick="marcar()">marcar ponto</button>
+<button onclick="verTotal()">ver total</button>
+
+<input id="nome" type="text">
+<button onclick="cumprimentar()">dizer oi</button>
+<p id="saudacao"></p>

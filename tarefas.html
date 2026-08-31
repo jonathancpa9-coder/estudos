@@ -1,0 +1,53 @@
+<h1>Minhas Tarefas</h1>
+<input id="campo" type="text" autofocus onkeydown="if (event.key === 'Enter') adicionar()">
+<button onclick="adicionar()">adicionar</button>
+
+<ul id="lista"></ul>
+
+<script>
+    let tarefas = [];
+
+    function adicionar() {
+
+        let texto = document.getElementById('campo').value;
+
+        if (texto === '') {
+            return;
+        }
+
+        tarefas.push(texto);
+        mostrar();
+
+        localStorage.setItem('minhasTarefas', JSON.stringify(tarefas));
+
+        document.getElementById('campo').value = '';
+        document.getElementById('campo').focus();
+
+    }
+
+    function mostrar() {
+        let lista = document.getElementById('lista');
+        lista.innerHTML = '';
+
+        for (let i = 0; i < tarefas.length; i++) {
+            let item = document.createElement('li');
+            item.textContent = tarefas[i];
+
+            let botao = document.createElement('button');
+            botao.textContent = 'x';
+            botao.onclick = function () { remover(i); };
+            item.appendChild(botao);
+
+            lista.appendChild(item);
+        }
+    }
+
+    function remover(posicao) {
+        tarefas.splice(posicao, 1);
+        mostrar();
+        localStorage.setItem('minhasTarefas', JSON.stringify(tarefas));
+    }
+
+    tarefas = JSON.parse(localStorage.getItem('minhasTarefas')) || [];
+     mostrar();
+</script>
