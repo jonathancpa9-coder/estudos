@@ -1,8 +1,65 @@
+<style>
+    body {
+        font-family: Times, sans-serif;
+        background-color: #c8e2ec;
+        padding: 10px;
+    }    
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #26dc26;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.apagar {
+    padding: 10px 20px;
+    font-size: 8px;
+    background-color: #26dc26;
+    margin-left: 10px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+</style>
+<div class="container">
 <h1>Minhas Tarefas</h1>
 <input id="campo" type="text" autofocus onkeydown="if (event.key === 'Enter') adicionar()">
 <button onclick="adicionar()">adicionar</button>
 
 <ul id="lista"></ul>
+</div>
 
 <script>
     let tarefas = [];
@@ -17,7 +74,7 @@
 
         tarefas.push(texto);
         mostrar();
-
+        
         localStorage.setItem('minhasTarefas', JSON.stringify(tarefas));
 
         document.getElementById('campo').value = '';
@@ -35,12 +92,15 @@
 
             let botao = document.createElement('button');
             botao.textContent = 'x';
+            botao.className = 'apagar';
             botao.onclick = function () { remover(i); };
             item.appendChild(botao);
 
             lista.appendChild(item);
         }
     }
+
+   
 
     function remover(posicao) {
         tarefas.splice(posicao, 1);
